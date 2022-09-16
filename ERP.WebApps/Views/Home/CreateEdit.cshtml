@@ -1,0 +1,50 @@
+﻿@model ERP.WebApps.Core.ViewModel.Privacy.UserViewModel
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formCreateEdit", name = "formCreateEdit" }))
+{
+    <div class="form-group row">
+        <label class="col-md-2">User ID</label>
+        <div class="col-md-4">
+            @Html.TextBoxFor(m => m.USER_ID, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2">User Name</label>
+        <div class="col-md-4">
+            @Html.TextBoxFor(m => m.USER_NAME, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2">PWD</label>
+        <div class="col-md-4">
+            @Html.TextBoxFor(m => m.PWD, new { @class = "form-control" })
+        </div>
+    </div>
+        <div class="form-group row">
+        <label class="col-md-2">PW 2D</label>
+        <div class="col-md-4">
+            <input type="text" class="form-control" name="date" id="date" />
+        </div>
+    </div>
+    <div class="row justify-content-md-center pt-2">
+        <div class="fix-w-180">
+            <button type="button" id="btnSubmit" class="btn submit btn-success ">Submit</button>
+            <button type="button" id="btnClose" class="btn cancel btn-secondary " data-dismiss="modal">Cancel</button>
+        </div>
+    </div>
+
+}
+
+        
+<script>
+    $(function () {
+        $("#date").kendoDatePicker({
+            format: "dd MMM yyyy",
+        });
+        $("#date").data("kendoDatePicker").trigger("change");
+
+        $("#formCreateEdit #btnSubmit").click(tablegrid.submitClick);
+        $("#formCreateEdit #btnClose").click(tablegrid.closeClick);
+    });
+</script>

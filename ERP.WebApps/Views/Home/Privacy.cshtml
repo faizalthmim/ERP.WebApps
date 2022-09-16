@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+@model ERP.WebApps.Core.ViewModel.Privacy.UserViewModel
+
+
+<h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+                        For more information about DataTables, please visit the <a target="_blank"
+                            href="https://datatables.net">official DataTables documentation</a>.</p>
+
+
+
+                    <!-- Filter -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Filter</h6>
+                        </div>
+                        <div class="card-body">
+                            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formHeader", name = "formHeader" }))
+                            {
+                                <div class="form-group row">
+                                    <label class="col-md-2">User ID</label>
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(m => m.USER_ID, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-2">User Name</label>
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(m => m.USER_NAME, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                               
+                                <div class="row justify-content-md-center pt-2">
+                                    <div class="fix-w-180">
+                                    <button type="submit" id="btnSubmit" class="btn submit btn-success ">Submit</button>
+                                    <button type="button" id="btnClose" class="btn cancel btn-secondary " data-dismiss="modal">Cancel</button>
+                                </div>
+                                </div>
+                            
+                            }
+                        </div>
+                    </div>
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                    <div class="col-md-12 pb-3">
+                                        <button class="btn btn-primary btn-icon-split float-end" id="btnAddNew">
+                                        <span class="icon text-white-50">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </span>
+                                        <span class="text">Add New</span>
+                                    </button>
+                                    </div>
+                                </div>
+                            <div class="table-responsive">
+                                
+
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Position</th>
+                                            <th>Office</th>
+                                            <th>Age</th>
+                                        </tr>
+                                    </thead>
+                      
+                                 
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+<div id="addEditWindow"></div>
+
+
+    @section Scripts{
+                                        
+    <script>
+        var tablegrid = (function (tablegrid) {
+            tablegrid.Create = "@Url.Action("Create")";
+            tablegrid.CreateApi = "/api/ApiHome/Create";
+            tablegrid.Edit = "@Url.Action("Edit")";
+            tablegrid.EditApi = "/api/ApiHome/Edit";
+            tablegrid.DeleteApi = "/api/ApiHome/Delete";
+            tablegrid.loadDataTable = "/api/ApiHome/ListGrid";
+            tablegrid.Upload = "@Url.Action("Upload")";
+            tablegrid.detailUrl = "@Url.Action("Detail")"
+            return tablegrid;
+        })(tablegrid || {});
+
+        $("#selectAll").click(function () {
+            $("#dtGrid input[type='checkbox']").prop('checked', this.checked);
+        });
+    </script>
+    <script src="~/js/modules/testuser/tablegrid.js"></script>
+    }
